@@ -70,6 +70,7 @@ namespace PlayerMovement1{
 				if (touch.phase == TouchPhase.Ended) 
 				{
 					moveOrNot = true;
+					startPath = false;
 				}
 			}
 		}
@@ -89,7 +90,9 @@ namespace PlayerMovement1{
 		}
 
 		public void setmoveOrNot(){
+			Debug.Log("Angle : " );
 			moveOrNot = false;
+			pF.startInfinite();
 		}
 
 		public void	setStartPath(){

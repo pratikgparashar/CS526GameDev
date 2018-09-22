@@ -10,26 +10,29 @@ public class PathFollower : MonoBehaviour {
 	ArrayList PathNode = new ArrayList();
 	public float MoveSpeed;
 	float Timer;
-	int CurrentNode;
+	int CurrentNode = 1;
 	static Vector3 CurrentPositionHolder;
+	bool moveInfinitely = false;
+	Vector3 infiniteDirection ;
 
 	PlayerMovement plMove;
 
 	// Use this for initialization
 	void Start () {
 		//PathNode = GetComponentsInChildren<Node>();
-		PathNode.Add(InitialNode2);
+		//PathNode.Add(InitialNode2);
 		plMove = Player.GetComponent<PlayerMovement>();
-		CheckNode();
+		//CheckNode();
+		Debug.Log("start");
 	}
 	
 	void CheckNode(){
 		if(CurrentNode <= PathNode.Count-1){
 			Timer = 0;
 			CurrentPositionHolder = ((Node)PathNode[CurrentNode]).transform.position;
+			Debug.Log(CurrentNode + "----" + PathNode.Count);
 		}else{
 			plMove.setmoveOrNot();
-		
 		}
 		
 	}
@@ -37,19 +40,26 @@ public class PathFollower : MonoBehaviour {
 	void Update () {
 		//Debug.Log(CurrentNode);
 		Timer += Time.deltaTime * MoveSpeed;
+		if(moveInfinitely){
+			Debug.Log("MOVEE-INFINTE");
+			//Player.transform += Player.transform.forward * Time.deltaTime * 1f;
+			//Player.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector3(Player.transform.position.x,0,Player.transform.position.y));
+		}
 		if(plMove.getmoveOrNot()){
 			if(Player.transform.position != CurrentPositionHolder){
 				FaceMoveDirection(CurrentPositionHolder);
-				Player.transform.position = Vector3.Lerp(Player.transform.position,CurrentPositionHolder,Timer);
-				if(CurrentNode - 1 > 0){
+				Player.transform.position = Vector3.MoveTowards(Player.transform.position,CurrentPositionHolder,Time.deltaTime * 1f);
+				if(CurrentNode - 1 >= 0){
 					((Node)PathNode[CurrentNode-1]).GetComponent<Node>().DestroyGameObject();
 					PathNode.RemoveAt(CurrentNode-1);
 					CurrentNode--;
 					
 				}
+				infiniteDirection = (Player.transform.position - CurrentPositionHolder).normalized;
 				
 			}else{
-				if(CurrentNode < PathNode.Count-1){
+				if(CurrentNode < PathNode.Count){
+					Debug.Log("BARABrt"+CurrentNode);
 					CurrentNode++;
 					CheckNode();
 				}
@@ -60,6 +70,8 @@ public class PathFollower : MonoBehaviour {
 
 	public void addNodeSInPathNode(Node newNode){
 		//Debug.Log((Node)newNode);
+		if(moveInfinitely)
+			moveInfinitely = false;
 		PathNode.Add(newNode);
 	}
 
@@ -88,6 +100,11 @@ public class PathFollower : MonoBehaviour {
 			return true;
 		else
 			return false;
+	}
+
+	public void startInfinite(){
+
+		moveInfinitely = true;
 	}
 }
 }

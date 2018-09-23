@@ -7,7 +7,7 @@ namespace PlayerMovement1{
 
 	public class PlayerMovement : MonoBehaviour {
 		public GameObject Path;
-		public Node InitialNode;
+        public Node InitialNode;
 		Vector3 worldCoordinates;
 		float maxSpeed = 5f;
 		static bool moveOrNot = false;
@@ -16,7 +16,8 @@ namespace PlayerMovement1{
 		Vector3 prevCoord;
 		// Use this for initialization
 		void Start () {
-			pF = Path.GetComponent<PathFollower>();
+            pF = Path.GetComponent<PathFollower>();
+            //pF = GetComponentInChildren<PathFollower>();
 		}
 	
 		// Update is called once per frame
@@ -29,10 +30,11 @@ namespace PlayerMovement1{
 					worldCoordinates = Camera.main.ScreenToWorldPoint(touch.position);
 					worldCoordinates.z = transform.position.z;
 					RaycastHit2D hit = Physics2D.Raycast(worldCoordinates, Vector2.zero);
-					if (hit.collider != null  && hit.collider.gameObject.name == "PlayerShip") {
+					if (hit.collider != null && hit.collider.gameObject.name == "PlayerShip") {
 						Debug.Log("OBJECT " );
 						startPath = true;
 						prevCoord = worldCoordinates;
+                        this.GetComponent<planeScript>().setMoveSingle(false);
 						if(pF.shouldReinitialize())
 							pF.reInitializePath(worldCoordinates,InitialNode);
                 //hit.collider.attachedRigidbody.AddForce(Vector2.up);

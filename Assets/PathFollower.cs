@@ -33,6 +33,8 @@ public class PathFollower : MonoBehaviour {
 			Debug.Log(CurrentNode + "----" + PathNode.Count);
 		}else{
 			plMove.setmoveOrNot();
+                Player.GetComponent<planeScript>().setDirection(CurrentPositionHolder);
+
 		}
 		
 	}
@@ -42,9 +44,10 @@ public class PathFollower : MonoBehaviour {
 		Timer += Time.deltaTime * MoveSpeed;
 		if(moveInfinitely){
 			Debug.Log("MOVEE-INFINTE");
-			//Player.transform += Player.transform.forward * Time.deltaTime * 1f;
-			//Player.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector3(Player.transform.position.x,0,Player.transform.position.y));
-		}
+                //transform.Translate(CurrentPositionHolder);
+                //Player.transform += Player.transform.forward * Time.deltaTime * 1f;
+                //Player.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector3(Player.transform.position.x,0,Player.transform.position.y));
+            }
 		if(plMove.getmoveOrNot()){
 			if(Player.transform.position != CurrentPositionHolder){
 				FaceMoveDirection(CurrentPositionHolder);

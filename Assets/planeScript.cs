@@ -24,7 +24,8 @@ public class planeScript : MonoBehaviour {
 		//Debug.Log("PLANE SCRIPT INITI");
 
         if (moveSingle){
-            //pl.transform.Translate(directionF.x*0.001f,directionF.y*0.002f,0);
+			//FaceMoveDirection(new Vector3(directionF.x*0.001f,0,directionF.y*0.002f));
+            pl.transform.Translate(0.002f,0.002f,0);
             //pl.transform.position = pl.transform.TransformDirection(directionF);
             //transform.Translate()
             //transform.Translate()
@@ -45,4 +46,13 @@ public class planeScript : MonoBehaviour {
         directionF = direction;
         //transform.Translate(direction);
     }
+
+	public void FaceMoveDirection(Vector3 CurrentPositionHolder)
+	{
+		Vector3 diff = CurrentPositionHolder - pl.transform.position;
+		diff.Normalize();
+		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+		//Debug.Log("Angle : " + rot_z);
+		pl.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+	}
 }

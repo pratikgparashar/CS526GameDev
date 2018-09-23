@@ -21,12 +21,19 @@ public class planeScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (moveSingle)
+		//Debug.Log("PLANE SCRIPT INITI");
+
+        if (moveSingle){
             //pl.transform.Translate(directionF.x*0.001f,directionF.y*0.002f,0);
             //pl.transform.position = pl.transform.TransformDirection(directionF);
             //transform.Translate()
             //transform.Translate()
-            pl.transform.Translate(pl.transform.forward * Time.deltaTime * 5, Space.Self);
+
+			//Debug.Log("PLANE SCRIPT" + pl.transform.forward + " - "+  Time.deltaTime * 5);
+            //transform.Translate(pl.transform.forward);
+			//transform.position += Vector3.one * Time.deltaTime;
+			//rb.AddRelativeForce(Vector3.up * 5f );
+			}
 
         //transform.Tra
     }

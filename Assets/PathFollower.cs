@@ -7,11 +7,11 @@ public class PathFollower : MonoBehaviour {
 	public  GameObject Player;
 	public Node InitialNode2;
 	//Node[] PathNode;
-	ArrayList PathNode = new ArrayList();
+	ArrayList PathNode;
 	public float MoveSpeed;
 	float Timer;
-	int CurrentNode = 1;
-	static Vector3 CurrentPositionHolder;
+	int CurrentNode = 2;
+	Vector3 CurrentPositionHolder;
 	bool moveInfinitely = false;
 	Vector3 infiniteDirection ;
 
@@ -22,18 +22,21 @@ public class PathFollower : MonoBehaviour {
 		//PathNode = GetComponentsInChildren<Node>();
 		//PathNode.Add(InitialNode2);
 		plMove = Player.GetComponent<PlayerMovement>();
+		PathNode = new ArrayList();
+		CurrentPositionHolder = Player.transform.position;
 		//CheckNode();
-		Debug.Log("start");
+		Debug.Log(PathNode.GetHashCode() + Player.name);
 	}
 	
 	void CheckNode(){
 		if(CurrentNode <= PathNode.Count-1){
 			Timer = 0;
 			CurrentPositionHolder = ((Node)PathNode[CurrentNode]).transform.position;
-			Debug.Log(CurrentNode + "----" + PathNode.Count);
+			Debug.Log(CurrentPositionHolder.x + "/" + CurrentPositionHolder.y + "----" + PathNode.GetHashCode());
 		}else{
 			plMove.setmoveOrNot();
-                Player.GetComponent<planeScript>().setDirection(CurrentPositionHolder);
+			//Debug.Log("CA:::::: SET");
+			Player.GetComponent<planeScript>().setDirection(CurrentPositionHolder);
 
 		}
 		
@@ -42,14 +45,15 @@ public class PathFollower : MonoBehaviour {
 	void Update () {
 		//Debug.Log(CurrentNode);
 		Timer += Time.deltaTime * MoveSpeed;
-		if(moveInfinitely){
+		if(false && moveInfinitely){
 			Debug.Log("MOVEE-INFINTE");
                 //transform.Translate(CurrentPositionHolder);
-                //Player.transform += Player.transform.forward * Time.deltaTime * 1f;
+                //Player.transform.position += Player.transform.forward * Time.deltaTime * 1f;
                 //Player.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector3(Player.transform.position.x,0,Player.transform.position.y));
             }
 		if(plMove.getmoveOrNot()){
 			if(Player.transform.position != CurrentPositionHolder){
+				Debug.Log(Player.transform.position + " IS MOVING FROM " + PathNode.GetHashCode());
 				FaceMoveDirection(CurrentPositionHolder);
 				Player.transform.position = Vector3.MoveTowards(Player.transform.position,CurrentPositionHolder,Time.deltaTime * 1f);
 				if(CurrentNode - 1 >= 0){
@@ -62,7 +66,7 @@ public class PathFollower : MonoBehaviour {
 				
 			}else{
 				if(CurrentNode < PathNode.Count){
-					Debug.Log("BARABrt"+CurrentNode);
+					//Debug.Log("BARABrt"+CurrentNode);
 					CurrentNode++;
 					CheckNode();
 				}
@@ -75,6 +79,7 @@ public class PathFollower : MonoBehaviour {
 		//Debug.Log((Node)newNode);
 		if(moveInfinitely)
 			moveInfinitely = false;
+		Debug.Log("ADD NODE " + PathNode.GetHashCode() + Player.name);
 		PathNode.Add(newNode);
 	}
 
@@ -89,7 +94,7 @@ public class PathFollower : MonoBehaviour {
 
 	public void reInitializePath(Vector3 worldCoordinates, Node InitialNode){
 		//PathNode.Clear();
-		
+		Debug.Log("INTIAL - NOD" + InitialNode.GetHashCode());
 		for(int i = PathNode.Count-1;i>0 ;i--){
 			((Node)PathNode[i]).GetComponent<Node>().DestroyGameObject();
 			PathNode.RemoveAt(i);

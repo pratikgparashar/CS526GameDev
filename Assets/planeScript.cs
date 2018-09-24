@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace PlayerMovement1{
 public class planeScript : MonoBehaviour {
     private Rigidbody2D rb;
     public GameObject pl;
@@ -41,19 +41,10 @@ public class planeScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        //Debug.Log("land hua hai");
-        //Debug.Log("collision name = " + col.gameObject.name);
-
-
-
-
-        //for (int i = 1; i < PathNode.Count; i++)
-        //{
-        //    ((Node)PathNode[i - 1]).GetComponent<Node>().DestroyGameObject();
-        //    PathNode.RemoveAt(i - 1);
-        //}
-        if (col.gameObject.name != "runway")
-            Destroy(col.gameObject);
+        if (col.gameObject.name != "runway"){
+			//col.gameObject.GetComponent<PathFollower>().destroyNode();
+			Destroy(col.gameObject);
+		}
 
     }
     public void setMoveSingle(bool toogle){
@@ -73,4 +64,5 @@ public class planeScript : MonoBehaviour {
 		//Debug.Log("Angle : " + rot_z);
 		pl.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 	}
+}
 }

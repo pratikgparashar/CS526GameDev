@@ -66,6 +66,7 @@ namespace PlayerMovement1{
 					atc.setActivePlane("");
 					moveOrNot = true;
 					startPath = false;
+					pF.setCurrentPositionHolder(transform.position);
 				}
 			}
 		}

@@ -425,6 +425,48 @@ Transform:
   m_Father: {fileID: 174796886}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 4.875, y: 0, z: 0}
+--- !u!1 &548697047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 548697049}
+  - component: {fileID: 548697048}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &548697048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 548697047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be08f9cc9784c436190a349379aec709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planes: {fileID: 608658896}
+  spawnRate: 1
+--- !u!4 &548697049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 548697047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.09, y: -1.799691, z: 692.0719}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &608658896
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,25 +636,33 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 608658896}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: -3.2, y: -0.046, z: 0.175}
+  m_LocalPosition: {x: -5.79, y: -0.046, z: 0.175}
   m_LocalScale: {x: 1.495, y: 1.5651509, z: 0}
   m_Children:
   - {fileID: 836489696}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
---- !u!114 &608658905
-MonoBehaviour:
+--- !u!50 &608658905
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 608658896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a25f5bb85c3a649b92f015db6352c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activePlane: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &673173583
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +678,7 @@ GameObject:
   - component: {fileID: 673173590}
   - component: {fileID: 673173591}
   - component: {fileID: 673173589}
+  - component: {fileID: 673173592}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -688,7 +739,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673173583}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: -0.1, y: 1.89, z: 0.52}
+  m_LocalPosition: {x: 5.55, y: 1.89, z: 0.53}
   m_LocalScale: {x: 1.495, y: 1.5651509, z: 0}
   m_Children:
   - {fileID: 736815031}
@@ -788,6 +839,26 @@ CircleCollider2D:
   m_Offset: {x: 0.024070147, y: 0.15903659}
   serializedVersion: 2
   m_Radius: 0.49000007
+--- !u!50 &673173592
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 673173583}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &736815029
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +981,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 938246938}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0976877, y: -2.4728017, z: 0.21830466}
+  m_LocalPosition: {x: 8.56, y: -2.4728017, z: 0.21830466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -928,7 +999,7 @@ GameObject:
   - component: {fileID: 1054705960}
   - component: {fileID: 1054705959}
   m_Layer: 0
-  m_Name: Square
+  m_Name: runway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1023,7 +1094,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054705958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.19, y: -0.56, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1131,7 +1202,7 @@ GameObject:
   - component: {fileID: 1479978953}
   - component: {fileID: 1479978952}
   - component: {fileID: 1479978951}
-  - component: {fileID: 1479978950}
+  - component: {fileID: 1479978959}
   m_Layer: 0
   m_Name: PlayerShip (2)
   m_TagString: Untagged
@@ -1139,18 +1210,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1479978950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1479978949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a25f5bb85c3a649b92f015db6352c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activePlane: 
 --- !u!114 &1479978951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,10 +1356,30 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1479978949}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0.88, y: -4.16, z: -0.55}
+  m_LocalPosition: {x: 0.88, y: 1.88, z: 0.52}
   m_LocalScale: {x: 1.495, y: 1.5651509, z: 0}
   m_Children:
   - {fileID: 174796886}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+--- !u!50 &1479978959
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479978949}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

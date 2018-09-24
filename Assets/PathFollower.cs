@@ -75,13 +75,30 @@ public class PathFollower : MonoBehaviour {
 		}
 	}
 
-	public void addNodeSInPathNode(Node newNode){
-		//Debug.Log((Node)newNode);
-		if(moveInfinitely)
-			moveInfinitely = false;
-		Debug.Log("ADD NODE " + PathNode.GetHashCode() + Player.name);
-		PathNode.Add(newNode);
-	}
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //Debug.Log("land hua hai");
+        //Debug.Log("collision name = " + col.gameObject.name);
+
+
+
+       
+            for (int i = 1; i < PathNode.Count;i++){
+                ((Node)PathNode[i - 1]).GetComponent<Node>().DestroyGameObject();
+                PathNode.RemoveAt(i - 1);
+            }
+            if(col.gameObject.name!="runway")
+                Destroy(col.gameObject);
+
+        }
+    public void addNodeSInPathNode(Node newNode){
+    	//Debug.Log((Node)newNode);
+    	if(moveInfinitely)
+    		moveInfinitely = false;
+    	Debug.Log("ADD NODE " + PathNode.GetHashCode() + Player.name);
+    	PathNode.Add(newNode);
+    }
 
 	public void FaceMoveDirection(Vector3 CurrentPositionHolder)
 	{

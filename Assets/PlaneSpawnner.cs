@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class planeSpawner : MonoBehaviour {
+public class PlaneSpawnner : MonoBehaviour {
 
-    public GameObject planes;
+	public GameObject planes;
     float randX;
     float randY;
     Vector2 whereToSpawn;
-    public float spawnRate ;
-    float nextSpawn = 1f;
+    public float spawnRate;
+    float nextSpawn = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -23,15 +23,11 @@ public class planeSpawner : MonoBehaviour {
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            randY = Random.Range(-6.5f, 3.0f);
-            randX = Random.Range(-6.5f, 6.0f);
+            randY = 1.0f;
+            randX = Random.Range(-2.0f, 3.0f);
             //whereToSpawn = new Vector2(randX, transform.position.y);
             whereToSpawn = new Vector2(randX, randY);
             Instantiate(planes, whereToSpawn, Quaternion.identity);
         }
-    }
-    void OnBecameInvisible()
-    {
-        Destroy(planes);
     }
 }

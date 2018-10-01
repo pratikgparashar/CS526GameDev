@@ -22,7 +22,12 @@ namespace PlayerMovement1{
 		
 		// Use this for initialization
 		void Start () {
-            pF = Path.GetComponent<PathFollower>();
+			//var r = new System.Random();
+			transform.name  = "Plane"+DateTime.Now.ToString("h:mm:ss tt");
+			//const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			//=  new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+
+			pF = Path.GetComponent<PathFollower>();
 			atc = atcGob.GetComponent<ATCCenter>();
             //pF = GetComponentInChildren<PathFollower>();
 			Debug.Log(transform.name + "" + pF.name + "" + atc.name);
@@ -66,6 +71,7 @@ namespace PlayerMovement1{
 					atc.setActivePlane("");
 					moveOrNot = true;
 					startPath = false;
+					pF.setCurrentPositionHolder(transform.position);
 				}
 			}
 		}

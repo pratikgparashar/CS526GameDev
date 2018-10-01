@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace PlayerMovement1{
 public class planeScript : MonoBehaviour {
     private Rigidbody2D rb;
     public GameObject pl;
@@ -38,6 +38,15 @@ public class planeScript : MonoBehaviour {
 
         //transform.Tra
     }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name != "runway"){
+			//col.gameObject.GetComponent<PathFollower>().destroyNode();
+			Destroy(col.gameObject);
+		}
+
+    }
     public void setMoveSingle(bool toogle){
         moveSingle = toogle;
     }
@@ -55,4 +64,5 @@ public class planeScript : MonoBehaviour {
 		//Debug.Log("Angle : " + rot_z);
 		pl.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 	}
+}
 }

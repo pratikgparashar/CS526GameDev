@@ -7,7 +7,6 @@ namespace PlayerMovement1{
 public class ATCCenter : MonoBehaviour {
 	
 	String activePlane;
-
 	// Use this for initialization
 	void Start () {
 		

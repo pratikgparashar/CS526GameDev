@@ -22,7 +22,7 @@ public class planeScript : MonoBehaviour {
     void Update()
     {
 		//Debug.Log("PLANE SCRIPT INITI");
-
+		//pl.GetComponent<PathFollower>().destroyNode();
         if (moveSingle){
 			//FaceMoveDirection(new Vector3(directionF.x*0.001f,0,directionF.y*0.002f));
             pl.transform.Translate(0.002f,0.002f,0);
@@ -34,26 +34,24 @@ public class planeScript : MonoBehaviour {
             //transform.Translate(pl.transform.forward);
 			//transform.position += Vector3.one * Time.deltaTime;
 			//rb.AddRelativeForce(Vector3.up * 5f );
-			}
-
-        //transform.Tra
+		}
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.name != "runway"){
-			//col.gameObject.GetComponent<PathFollower>().destroyNode();
+			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			Destroy(col.gameObject);
 		}
-
     }
+
     public void setMoveSingle(bool toogle){
         moveSingle = toogle;
     }
+
     public void setDirection(Vector3 direction){
         moveSingle = true;
         directionF = direction;
-        //transform.Translate(direction);
     }
 
 	public void FaceMoveDirection(Vector3 CurrentPositionHolder)
@@ -61,7 +59,6 @@ public class planeScript : MonoBehaviour {
 		Vector3 diff = CurrentPositionHolder - pl.transform.position;
 		diff.Normalize();
 		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-		//Debug.Log("Angle : " + rot_z);
 		pl.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 	}
 }

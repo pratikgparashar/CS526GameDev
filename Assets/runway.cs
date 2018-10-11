@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace PlayerMovement1{
 public class runway : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,15 +13,15 @@ public class runway : MonoBehaviour {
 	void Update () {
 		
 	}
+
     void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("land hua hai");
         Debug.Log("collision name = " + col.gameObject.name);
-
-
-       
-            Destroy(col.gameObject);
-            print("hit left");
+		col.gameObject.GetComponent<PathFollower>().destroyNode();
+        Destroy(col.gameObject);
+        print("hit left");
        
     }
+}
 }

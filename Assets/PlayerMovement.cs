@@ -23,7 +23,8 @@ namespace PlayerMovement1{
 		// Use this for initialization
 		void Start () {
 			String a = DateTime.Now.ToString("h:mm:ss tt");
-			transform.name  = "Plane"+a;
+			if(transform.name != "OriginalPlayerShip")
+				transform.name  = "Plane"+a;
 			Path.transform.name = "Path"+a;
 			pF = gameObject.GetComponent<PathFollower>();
 			atc = atcGob.GetComponent<ATCCenter>();
@@ -33,44 +34,48 @@ namespace PlayerMovement1{
 	
 		// Update is called once per frame
 		void Update () {
-			foreach(Touch touch in Input.touches)
-			{
-				if (touch.phase == TouchPhase.Began)
+			if(transform.name != "OriginalPlayerShip"){
+				foreach(Touch touch in Input.touches)
 				{
-					//Debug.Log("Touch: " + touch.position);
-					Vector3 worldCoordinates = Camera.main.ScreenToWorldPoint(touch.position);
-					worldCoordinates.z = transform.position.z;
-					RaycastHit2D hit = Physics2D.Raycast(worldCoordinates, Vector2.zero);
-					//Debug.Log("HITTTTIn" + hit.collider.gameObject.name );
-					if (hit.collider != null && hit.collider.gameObject.name == transform.name) {
-						atc.setActivePlane(transform.name);
-						startPath = true;
-						prevCoord = worldCoordinates;
-                        this.GetComponent<planeScript>().setMoveSingle(false);
-						if(pF.shouldReinitialize())
-							pF.reInitializePath(worldCoordinates,InitialNode);
-					}
-					//pF.addNodeSInPathNode(Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y), InitialNode.transform.rotation));
-					
-				}
-				if (touch.phase == TouchPhase.Moved && startPath && atc.getActivePlane() == transform.name) 
-				{
-					Vector3 worldCoordinates = Camera.main.ScreenToWorldPoint(touch.position);
-					worldCoordinates.z = transform.position.z;
-					if (Math.Sqrt(Math.Pow(worldCoordinates.x - prevCoord.x,2)+Math.Pow(worldCoordinates.y - prevCoord.y,2))>0.005)
+					if (touch.phase == TouchPhase.Began)
 					{
-						Node n = Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y),InitialNode.transform.rotation);
-						n.name = "Node"+transform.name;
-						pF.addNodeSInPathNode(n);
-						prevCoord = worldCoordinates;
+						//Debug.Log("Touch: " + touch.position);
+						Vector3 worldCoordinates = Camera.main.ScreenToWorldPoint(touch.position);
+						worldCoordinates.z = transform.position.z;
+						RaycastHit2D hit = Physics2D.Raycast(worldCoordinates, Vector2.zero);
+						//Debug.Log("HITTTTIn" + hit.collider.gameObject.name );
+						if (hit.collider != null && hit.collider.gameObject.name == transform.name) {
+							atc.setActivePlane(transform.name);
+							startPath = true;
+							prevCoord = worldCoordinates;
+							this.GetComponent<planeScript>().setMoveSingle(false);
+							if(pF.shouldReinitialize())
+								pF.reInitializePath(worldCoordinates,InitialNode);
+						}
+						//pF.addNodeSInPathNode(Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y), InitialNode.transform.rotation));
+					
 					}
-				}
-				if (touch.phase == TouchPhase.Ended && atc.getActivePlane() == transform.name) 
-				{	
-					atc.setActivePlane("");
-					moveOrNot = true;
-					startPath = false;
-					pF.setCurrentPositionHolder(transform.position);
+					if (touch.phase == TouchPhase.Moved && startPath && atc.getActivePlane() == transform.name) 
+					{
+						//worldCoordinates = proposed location for dot.
+						Vector3 worldCoordinates = Camera.main.ScreenToWorldPoint(touch.position);
+						worldCoordinates.z = transform.position.z;
+
+						if (Math.Sqrt(Math.Pow(worldCoordinates.x - prevCoord.x,2)+Math.Pow(worldCoordinates.y - prevCoord.y,2))>0.005)
+						{
+							Node n = Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y),InitialNode.transform.rotation);
+							n.name = "Node"+transform.name;
+							pF.addNodeSInPathNode(n);
+							prevCoord = worldCoordinates;
+						}
+					}
+					if (touch.phase == TouchPhase.Ended && atc.getActivePlane() == transform.name) 
+					{	
+						atc.setActivePlane("");
+						moveOrNot = true;
+						startPath = false;
+						pF.setCurrentPositionHolder(transform.position);
+					}
 				}
 			}
 		}

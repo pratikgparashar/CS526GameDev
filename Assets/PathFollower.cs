@@ -7,6 +7,7 @@ public class PathFollower : MonoBehaviour {
 	public  GameObject Player;
 	public Node InitialNode2;
 	static float[] speeds = {0.5f, 0.8f, 1f, 2f};
+	//path data store
 	public ArrayList PathNode;
 	public float MoveSpeed;
 	float Timer;

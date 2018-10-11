@@ -22,12 +22,10 @@ namespace PlayerMovement1{
 		
 		// Use this for initialization
 		void Start () {
-			//var r = new System.Random();
-			transform.name  = "Plane"+DateTime.Now.ToString("h:mm:ss tt");
-			//const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-			//=  new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-
-			pF = Path.GetComponent<PathFollower>();
+			String a = DateTime.Now.ToString("h:mm:ss tt");
+			transform.name  = "Plane"+a;
+			Path.transform.name = "Path"+a;
+			pF = gameObject.GetComponent<PathFollower>();
 			atc = atcGob.GetComponent<ATCCenter>();
             //pF = GetComponentInChildren<PathFollower>();
 			Debug.Log(transform.name + "" + pF.name + "" + atc.name);
@@ -61,8 +59,9 @@ namespace PlayerMovement1{
 					worldCoordinates.z = transform.position.z;
 					if (Math.Sqrt(Math.Pow(worldCoordinates.x - prevCoord.x,2)+Math.Pow(worldCoordinates.y - prevCoord.y,2))>0.005)
 					{
-						Debug.Log("NEW INIR" + InitialNode.GetHashCode());
-						pF.addNodeSInPathNode(Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y), InitialNode.transform.rotation));
+						Node n = Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y),InitialNode.transform.rotation);
+						n.name = "Node"+transform.name;
+						pF.addNodeSInPathNode(n);
 						prevCoord = worldCoordinates;
 					}
 				}
@@ -76,22 +75,12 @@ namespace PlayerMovement1{
 			}
 		}
 
-		/*public void FaceMoveDirection()
-		{
-			Vector3 diff = new Vector3(worldCoordinates.x,worldCoordinates.y) - transform.position;
-			diff.Normalize();
- 
-			float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-			//Debug.Log("Angle : " + rot_z);
-			transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-		}*/
 
 		public bool getmoveOrNot(){
 			return moveOrNot;
 		}
 
 		public void setmoveOrNot(){
-			//Debug.Log("Angle : " );
 			moveOrNot = false;
 			pF.startInfinite();
 		}

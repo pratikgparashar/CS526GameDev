@@ -22,6 +22,7 @@ namespace PlayerMovement1{
 		
 		// Use this for initialization
 		void Start () {
+			highLightStop();
 			String a = DateTime.Now.ToString("h:mm:ss tt");
 			if(transform.name != "OriginalPlayerShip")
 				transform.name  = "Plane"+a;
@@ -45,6 +46,7 @@ namespace PlayerMovement1{
 						RaycastHit2D hit = Physics2D.Raycast(worldCoordinates, Vector2.zero);
 						//Debug.Log("HITTTTIn" + hit.collider.gameObject.name );
 						if (hit.collider != null && hit.collider.gameObject.name == transform.name) {
+							highLightStart();
 							atc.setActivePlane(transform.name);
 							startPath = true;
 							prevCoord = worldCoordinates;
@@ -71,6 +73,7 @@ namespace PlayerMovement1{
 					}
 					if (touch.phase == TouchPhase.Ended && atc.getActivePlane() == transform.name) 
 					{	
+						highLightStop();
 						atc.setActivePlane("");
 						moveOrNot = true;
 						startPath = false;
@@ -93,5 +96,14 @@ namespace PlayerMovement1{
 		public void	setStartPath(){
 			startPath = false;
 		}
+
+		public void highLightStart(){
+			transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+		}
+		
+		public void highLightStop(){
+			transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+		}
+
 	}
 }

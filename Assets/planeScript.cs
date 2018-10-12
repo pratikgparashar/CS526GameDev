@@ -24,18 +24,24 @@ public class planeScript : MonoBehaviour {
 		//Debug.Log("PLANE SCRIPT INITI");
 		//pl.GetComponent<PathFollower>().destroyNode();
         if (moveSingle){
-			//FaceMoveDirection(new Vector3(directionF.x*0.001f,0,directionF.y*0.002f));
-            pl.transform.Translate(0.002f,0.002f,0);
-            //pl.transform.position = pl.transform.TransformDirection(directionF);
-            //transform.Translate()
-            //transform.Translate()
+                //FaceMoveDirection(new Vector3(directionF.x*0.001f,0,directionF.y*0.002f));
+                //pl.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
+                Vector3 a = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
+                FaceMoveDirection(a);
 
-			//Debug.Log("PLANE SCRIPT" + pl.transform.forward + " - "+  Time.deltaTime * 5);
-            //transform.Translate(pl.transform.forward);
-			//transform.position += Vector3.one * Time.deltaTime;
-			//rb.AddRelativeForce(Vector3.up * 5f );
-		}
-    }
+                pl.transform.position = Vector3.MoveTowards(pl.transform.position, a, Time.deltaTime * 1f);
+
+                //pl.transform.Translate(a);
+                //pl.transform.position = pl.transform.TransformDirection(directionF);
+                //transform.Translate()
+                //transform.Translate()
+
+                //Debug.Log("PLANE SCRIPT" + pl.transform.forward + " - "+  Time.deltaTime * 5);
+                //transform.Translate(pl.transform.forward);
+                //transform.position += Vector3.one * Time.deltaTime;
+                //rb.AddRelativeForce(Vector3.up * 5f );
+            }
+        }
 
     void OnCollisionEnter2D(Collision2D col)
     {

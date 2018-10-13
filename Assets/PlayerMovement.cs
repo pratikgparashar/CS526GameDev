@@ -16,7 +16,7 @@ namespace PlayerMovement1{
 
 		//Vector3 worldCoordinates;
 		float maxSpeed = 5f;
-		bool moveOrNot = false;
+		public bool moveOrNot = false;
 		bool startPath = false;
 		Vector3 prevCoord;
 		
@@ -25,8 +25,8 @@ namespace PlayerMovement1{
 			highLightStop();
 			String a = DateTime.Now.ToString("h:mm:ss tt");
 			if(transform.name != "OriginalPlayerShip")
-				transform.name  = "Plane"+a;
-			Path.transform.name = "Path"+a;
+				transform.name  = "Plane"+a+transform.name;
+			Path.transform.name = "Path"+a+transform.name;
 			pF = gameObject.GetComponent<PathFollower>();
 			atc = atcGob.GetComponent<ATCCenter>();
             //pF = GetComponentInChildren<PathFollower>();

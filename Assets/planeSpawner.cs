@@ -11,16 +11,16 @@ namespace PlayerMovement1
         float randY;
         Vector2 whereToSpawn;
         public float spawnRate;
-        float nextSpawn = 1f;
+        float nextSpawn = 10f;
         int planeCount=1;
-        static int maxPlaneCount = 10;
+        static int maxPlaneCount = 2;
         public int direction;
 
 
         // Use this for initialization
         void Start()
         {
-
+			spawnRate=10;
         }
 
         // Update is called once per frame
@@ -56,6 +56,7 @@ namespace PlayerMovement1
                 //whereToSpawn = new Vector2(randX, transform.position.y);
                 whereToSpawn = new Vector2(randX, randY);
                 GameObject p = Instantiate(planes, whereToSpawn, Quaternion.identity);
+				p.name = ""+direction;
                 p.GetComponent<planeScript>().spawnernumber = direction;
 
                 planeCount += 1;

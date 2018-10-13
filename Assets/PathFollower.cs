@@ -11,7 +11,7 @@ public class PathFollower : MonoBehaviour {
 	public ArrayList PathNode;
 	public float MoveSpeed;
 	float Timer;
-	int CurrentNode = 2;
+	int CurrentNode = 0;
 	Vector3 CurrentPositionHolder;
 	bool moveInfinitely = false;
 	Vector3 infiniteDirection ;
@@ -42,6 +42,7 @@ public class PathFollower : MonoBehaviour {
 			if(Player.transform.position != CurrentPositionHolder){
 				FaceMoveDirection(CurrentPositionHolder);
 				Player.transform.position = Vector3.MoveTowards(Player.transform.position,CurrentPositionHolder,Time.deltaTime * MoveSpeed);
+				//Debug.Log(Player.transform.name+"--new--"+Time.deltaTime * MoveSpeed);
 				if(CurrentNode - 1 >= 0){
 					((Node)PathNode[CurrentNode-1]).GetComponent<Node>().DestroyGameObject();
 					PathNode.RemoveAt(CurrentNode-1);

@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace PlayerMovement1{
 public class planeScript : MonoBehaviour {
+
+
     private Rigidbody2D rb;
     public GameObject pl;
     public int spawnernumber;
     float randX = 0.0f;
     float randY = 0.0f;
     Vector3 directionF = new Vector3(0.02f,0.05f,0);
-    bool moveSingle = true;
+    public bool moveSingle = true;
     Vector3 location;
+	public bool touchedRunway= false;
+    Vector3 runwayMidpoint;
 
         // Use this for initialization
-        void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         randX = Random.Range(-0.04f, 0.0f);
         randY = Random.Range(-0.04f, 0.02f);
         location = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height/2, Camera.main.nearClipPlane));
-
-        }
+     }
 
     // Update is called once per frame
     void Update()
@@ -28,9 +31,11 @@ public class planeScript : MonoBehaviour {
 
             if (transform.name != "OriginalPlayerShip")
             {
-                //Debug.Log("PLANE SCRIPT INITI");
-                //pl.GetComponent<PathFollower>().destroyNode();
-                if (moveSingle)
+				if(touchedRunway && this.GetComponent<PathFollower>().PathNode.Count==0)
+				{
+					Destroy(this.gameObject);
+				}
+                if (moveSingle && !transform.GetComponent<PlayerMovement>().getmoveOrNot())
                 {
 
                     if (pl.GetComponent<planeScript>().spawnernumber == 1)
@@ -51,25 +56,21 @@ public class planeScript : MonoBehaviour {
                     }
                     FaceMoveDirection(location);
                     pl.transform.position = Vector3.MoveTowards(pl.transform.position, location, Time.deltaTime * 1f);
-                    //pl.transform.Translate(a);
-                    //pl.transform.position = pl.transform.TransformDirection(directionF);
-                    //transform.Translate()
-                    //transform.Translate()
-
-                    //Debug.Log("PLANE SCRIPT" + pl.transform.forward + " - "+  Time.deltaTime * 5);
-                    //transform.Translate(pl.transform.forward);
-                    //transform.position += Vector3.one * Time.deltaTime;
-                    //rb.AddRelativeForce(Vector3.up * 5f );
                 }
             }
         }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-            if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip"){
+        if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip"){
 			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			Destroy(col.gameObject);
 		}
+    }
+
+	public void settouchRunway(bool toogle)
+    {
+         touchedRunway = toogle;
     }
 
     public void setMoveSingle(bool toogle){

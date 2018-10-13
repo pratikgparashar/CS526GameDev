@@ -7,9 +7,10 @@ namespace PlayerMovement1{
 public class ATCCenter : MonoBehaviour {
 	
 	String activePlane;
+	public int allPlaneCount;
 	// Use this for initialization
 	void Start () {
-		
+		allPlaneCount = 0;
 	}
 	
 	// Update is called once per frame
@@ -20,10 +21,18 @@ public class ATCCenter : MonoBehaviour {
 	public void setActivePlane(String s){
 			Debug.Log(activePlane + " ----" + s);
 			activePlane = s;
-		}
+	}
 
-		public String getActivePlane(){
-			return activePlane;
-		}
+	public String getActivePlane(){
+		return activePlane;
+	}
+
+	public void incrPlaneCount(){
+		allPlaneCount += 1;
+	}
+
+	public void descrPlaneCount(){
+		allPlaneCount -= 1;
+	}
 }
 }

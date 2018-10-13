@@ -17,12 +17,27 @@ public class PathFollower : MonoBehaviour {
 	Vector3 infiniteDirection ;
 	PlayerMovement plMove;
 
+	//PlaneSc
+	private Rigidbody2D rb;
+    public int spawnernumber;
+    float randX = 0.0f;
+    float randY = 0.0f;
+    Vector3 directionF = new Vector3(0.02f,0.05f,0);
+    public bool moveSingle = true;
+    Vector3 location;
+	public bool touchedRunway= false;
+    Vector3 runwayMidpoint;
+
+
 	// Use this for initialization
 	void Start () {
 		plMove = Player.GetComponent<PlayerMovement>();
 		PathNode = new ArrayList();
 		CurrentPositionHolder = Player.transform.position;
 		MoveSpeed =  speeds[Random.Range(0, 4)];
+		//PlaneSc
+		rb = GetComponent<Rigidbody2D>();
+		location = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height/2, Camera.main.nearClipPlane));
 	}
 	
 	void CheckNode(){
@@ -31,29 +46,52 @@ public class PathFollower : MonoBehaviour {
 			CurrentPositionHolder = ((Node)PathNode[CurrentNode]).transform.position;
 		}else{
 			plMove.setmoveOrNot();
-			Player.GetComponent<planeScript>().setDirection(CurrentPositionHolder);
+			setDirection(CurrentPositionHolder);
 		}
 		
 	}
 	// Update is called once per frame
 	void Update () {
+		if(transform.name != "OriginalPlayerShip"){ 
+			
+			if(touchedRunway && this.GetComponent<PathFollower>().PathNode.Count==0){
+				Destroy(this.gameObject);
+				plMove.atc.descrPlaneCount();
+			}
 
-		if(plMove.getmoveOrNot()){
-			if(Player.transform.position != CurrentPositionHolder){
-				FaceMoveDirection(CurrentPositionHolder);
-				Player.transform.position = Vector3.MoveTowards(Player.transform.position,CurrentPositionHolder,Time.deltaTime * MoveSpeed);
-				//Debug.Log(Player.transform.name+"--new--"+Time.deltaTime * MoveSpeed);
-				if(CurrentNode - 1 >= 0){
-					((Node)PathNode[CurrentNode-1]).GetComponent<Node>().DestroyGameObject();
-					PathNode.RemoveAt(CurrentNode-1);
-					CurrentNode--;
+			if(plMove.getmoveOrNot()){
+				if(Player.transform.position != CurrentPositionHolder){
+					FaceMoveDirection(CurrentPositionHolder);
+					Player.transform.position = Vector3.MoveTowards(Player.transform.position,CurrentPositionHolder,Time.deltaTime * MoveSpeed);
+					//Debug.Log(Player.transform.name+"--new--"+Time.deltaTime * MoveSpeed);
+					if(CurrentNode - 1 >= 0){
+						((Node)PathNode[CurrentNode-1]).GetComponent<Node>().DestroyGameObject();
+						PathNode.RemoveAt(CurrentNode-1);
+						CurrentNode--;
+					}
+					infiniteDirection = (Player.transform.position - CurrentPositionHolder).normalized;
+				}else{
+					if(CurrentNode < PathNode.Count){
+						CurrentNode++;
+						CheckNode();
+					}
 				}
-				infiniteDirection = (Player.transform.position - CurrentPositionHolder).normalized;
-			}else{
-				if(CurrentNode < PathNode.Count){
-					CurrentNode++;
-					CheckNode();
+			}//PlaneSc
+			else{
+				if (Player.GetComponent<planeScript>().spawnernumber == 1){
+					location.y = 10f;
 				}
+				else if (Player.GetComponent<planeScript>().spawnernumber == 3){
+					location.x = 12f;
+				}
+				else if (Player.GetComponent<planeScript>().spawnernumber == 2){
+					location.y = -10f;
+				}
+				else{
+					location.x = -12f;
+				}
+				FaceMoveDirection(location);
+				Player.transform.position = Vector3.MoveTowards(Player.transform.position, location, Time.deltaTime * 1f);
 			}
 		}
 	}
@@ -98,5 +136,29 @@ public class PathFollower : MonoBehaviour {
 			PathNode.RemoveAt(i);
 		}
 	}
+
+	//PlaneSc
+	void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip"){
+			col.gameObject.GetComponent<PathFollower>().destroyNode();
+			plMove.atc.descrPlaneCount();
+			Destroy(col.gameObject);
+		}
+    }
+
+	public void settouchRunway(bool toogle)
+    {
+         touchedRunway = toogle;
+    }
+
+	public void setMoveSingle(bool toogle){
+        moveSingle = toogle;
+    }
+
+    public void setDirection(Vector3 direction){
+        moveSingle = true;
+        directionF = direction;
+    }
 }
 }

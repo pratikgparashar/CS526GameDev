@@ -50,7 +50,7 @@ namespace PlayerMovement1{
 							atc.setActivePlane(transform.name);
 							startPath = true;
 							prevCoord = worldCoordinates;
-							this.GetComponent<planeScript>().setMoveSingle(false);
+							pF.setMoveSingle(false);
 							if(pF.shouldReinitialize())
 								pF.reInitializePath(worldCoordinates,InitialNode);
 						}

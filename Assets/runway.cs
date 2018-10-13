@@ -50,7 +50,7 @@ namespace PlayerMovement1
                 Node newn = Instantiate(n, this.GetComponent<Renderer>().bounds.center, n.transform.rotation);
                 PathNode.Add(newn);
                 gameObj = col.gameObject;
-                gameObj.GetComponent<planeScript>().settouchRunway(true);
+                gameObj.GetComponent<PathFollower>().settouchRunway(true);
             }
             else{
                 gameObj = col.gameObject;

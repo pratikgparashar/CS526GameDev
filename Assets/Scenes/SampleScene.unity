@@ -197,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 103045100}
   - component: {fileID: 103045099}
+  - component: {fileID: 103045101}
   m_Layer: 0
   m_Name: PlaneSpawner_up
   m_TagString: Untagged
@@ -210,13 +211,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 103045098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eba789410222b49a7a564b66d8ac71b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   planes: {fileID: 673173583}
-  spawnRate: 3
+  randX: 0
+  randY: 0
+  whereToSpawn: {x: 0, y: 0}
+  spawnRate: 7
+  nextSpawn: 1
+  planeCount: 1
 --- !u!4 &103045100
 Transform:
   m_ObjectHideFlags: 0
@@ -230,6 +236,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &103045101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 103045098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be08f9cc9784c436190a349379aec709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planes: {fileID: 673173583}
+  spawnRate: 5
+  direction: 2
 --- !u!1 &275268103
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planes: {fileID: 673173583}
-  spawnRate: 5
+  spawnRate: 7
+  direction: 1
 --- !u!4 &275268105
 Transform:
   m_ObjectHideFlags: 0
@@ -544,6 +565,7 @@ GameObject:
   - component: {fileID: 673173591}
   - component: {fileID: 673173589}
   - component: {fileID: 673173592}
+  - component: {fileID: 673173593}
   m_Layer: 0
   m_Name: OriginalPlayerShip
   m_TagString: Untagged
@@ -665,6 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pl: {fileID: 673173583}
+  spawnernumber: 1
 --- !u!61 &673173590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -725,6 +748,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!68 &673173593
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 673173583}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 11.030598, y: -4.236674}
+  - {x: 10.665144, y: -4.2786555}
+  - {x: 2.0226216, y: -0.03148794}
+  - {x: 1.754843, y: -6.181897}
+  - {x: 4.859294, y: -9.822763}
+  - {x: -0.39746046, y: -9.490667}
+  - {x: -5.4165387, y: -9.11381}
+  - {x: -4.753549, y: -9.06114}
+  - {x: -1.1636138, y: -6.089199}
+  - {x: -2.0493603, y: -0.2690643}
+  - {x: -11.794205, y: -3.1235695}
+  - {x: -1.9304347, y: 6.1886644}
+  - {x: -0.77121973, y: 12.557716}
+  - {x: 0.15507936, y: 11.416079}
+  - {x: 1.6052032, y: 10.0635195}
+  - {x: 2.399727, y: 5.317344}
+  - {x: 4.965845, y: 3.0738168}
+  - {x: 10.744494, y: -4.0389943}
+  - {x: 11.130567, y: -3.0657344}
 --- !u!1 &736815029
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845315260}
   - component: {fileID: 845315259}
+  - component: {fileID: 845315261}
   m_Layer: 0
   m_Name: PlaneSpawner_left
   m_TagString: Untagged
@@ -791,13 +849,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 845315258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 942b8d1f0ce9c4609aa909f98cf31fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   planes: {fileID: 673173583}
+  randX: 0
+  randY: 0
+  whereToSpawn: {x: 0, y: 0}
   spawnRate: 5
+  nextSpawn: 1
+  planeCount: 1
 --- !u!4 &845315260
 Transform:
   m_ObjectHideFlags: 0
@@ -811,6 +874,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845315261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 845315258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be08f9cc9784c436190a349379aec709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planes: {fileID: 673173583}
+  spawnRate: 5
+  direction: 3
 --- !u!1 &938246938
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,3 +1041,108 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -0.33, y: -0.238, z: 13.067}
+--- !u!1 &1102381179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102381181}
+  - component: {fileID: 1102381180}
+  m_Layer: 0
+  m_Name: PlaneSpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1102381180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102381179}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be08f9cc9784c436190a349379aec709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planes: {fileID: 673173583}
+  spawnRate: 7
+  direction: 1
+--- !u!4 &1102381181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102381179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.61, y: -4.57, z: 0.09420891}
+  m_LocalScale: {x: 0.93793, y: 0.93793, z: 0.93793}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2117632440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2117632441}
+  - component: {fileID: 2117632442}
+  - component: {fileID: 2117632443}
+  m_Layer: 0
+  m_Name: PlaneSpawner_right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2117632441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2117632440}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.06, y: -1.98, z: 0.09420891}
+  m_LocalScale: {x: 0.93793, y: 0.93793, z: 0.93793}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2117632442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2117632440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732eb8330a5d74ab1980ef03bb109d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planes: {fileID: 673173583}
+  randX: 0
+  randY: 0
+  whereToSpawn: {x: 0, y: 0}
+  spawnRate: 6
+  nextSpawn: 1
+  planeCount: 0
+--- !u!114 &2117632443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2117632440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be08f9cc9784c436190a349379aec709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planes: {fileID: 673173583}
+  spawnRate: 5
+  direction: 4

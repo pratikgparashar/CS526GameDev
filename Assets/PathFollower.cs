@@ -57,6 +57,7 @@ public class PathFollower : MonoBehaviour {
 			if(touchedRunway && this.GetComponent<PathFollower>().PathNode.Count==0){
 				Destroy(this.gameObject);
 				plMove.atc.descrPlaneCount();
+				ScoreScript.scoreValue+=1;
 			}
 
 			if(plMove.getmoveOrNot()){
@@ -141,9 +142,24 @@ public class PathFollower : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip"){
+
+        	if(ScoreScript.scoreValue > PlayerPrefs.GetInt("HighScore"))
+			{
+				Debug.Log("SCORE ==>>>>>>>" + ScoreScript.scoreValue);
+				Debug.Log("HIGHSCORE ==>>>>>>>" + PlayerPrefs.GetInt("HighScore"));
+
+				PlayerPrefs.SetInt("HighScore", ScoreScript.scoreValue);
+			}
+
+
 			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			plMove.atc.descrPlaneCount();
 			Destroy(col.gameObject);
+			//Game End
+
+
+			Application.LoadLevel("GameOverScene");
+
 		}
     }
 

@@ -19,6 +19,8 @@ namespace PlayerMovement1{
 		public bool moveOrNot = false;
 		bool startPath = false;
 		Vector3 prevCoord;
+		Vector3 firstCoord;
+		
 		
 		// Use this for initialization
 		void Start () {
@@ -26,6 +28,9 @@ namespace PlayerMovement1{
 			String a = DateTime.Now.ToString("h:mm:ss tt");
 			if(transform.name != "OriginalPlayerShip")
 				transform.name  = "Plane"+a+transform.name;
+			
+			//transform.scale.x = scales[sc];
+			//transform.scale.y = scales[sc];
 			Path.transform.name = "Path"+a+transform.name;
 			pF = gameObject.GetComponent<PathFollower>();
 			atc = atcGob.GetComponent<ATCCenter>();
@@ -48,16 +53,18 @@ namespace PlayerMovement1{
 						if (hit.collider != null && hit.collider.gameObject.name == transform.name) {
 							highLightStart();
 							atc.setActivePlane(transform.name);
+							firstCoord = new Vector3(0,0,0);
 							startPath = true;
 							prevCoord = worldCoordinates;
-							pF.setMoveSingle(false);
+							//moveOrNot = true;
+							//pF.setMoveSingle(false);
 							if(pF.shouldReinitialize())
-								pF.reInitializePath(worldCoordinates,InitialNode);
+								pF.reInitializePath(transform.position,InitialNode);
 						}
 						//pF.addNodeSInPathNode(Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y), InitialNode.transform.rotation));
 					
 					}
-					if (touch.phase == TouchPhase.Moved && startPath && atc.getActivePlane() == transform.name) 
+					else if (touch.phase == TouchPhase.Moved && startPath && atc.getActivePlane() == transform.name) 
 					{
 						//worldCoordinates = proposed location for dot.
 						Vector3 worldCoordinates = Camera.main.ScreenToWorldPoint(touch.position);
@@ -67,17 +74,21 @@ namespace PlayerMovement1{
 						{
 							Node n = Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y),InitialNode.transform.rotation);
 							n.name = "Node"+transform.name;
+							if(firstCoord == new Vector3(0,0,0)){
+								firstCoord = worldCoordinates;
+								pF.setCurrentPositionHolder(firstCoord);
+							}
 							pF.addNodeSInPathNode(n);
 							prevCoord = worldCoordinates;
 						}
 					}
-					if (touch.phase == TouchPhase.Ended && atc.getActivePlane() == transform.name) 
+					else if (touch.phase == TouchPhase.Ended && atc.getActivePlane() == transform.name) 
 					{	
 						highLightStop();
 						atc.setActivePlane("");
 						moveOrNot = true;
 						startPath = false;
-						pF.setCurrentPositionHolder(transform.position);
+						//pF.setCurrentPositionHolder(prevCoord);
 					}
 				}
 			}

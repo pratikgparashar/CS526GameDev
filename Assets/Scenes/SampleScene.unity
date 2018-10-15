@@ -559,7 +559,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &673173585
 Transform:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673173583}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: -1.07, y: -11.626, z: -1.842}
+  m_LocalPosition: {x: -1.01, y: -11.58, z: -1.84}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0}
   m_Children:
   - {fileID: 75518111}
@@ -606,9 +606,11 @@ MonoBehaviour:
   Player: {fileID: 673173583}
   InitialNode2: {fileID: 0}
   MoveSpeed: 0
+  CurrentPositionHolder: {x: 0, y: 0, z: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
+  prevCommand: {x: 0, y: 0, z: 0}
 --- !u!114 &673173588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,7 +652,7 @@ BoxCollider2D:
   m_Offset: {x: 0.024020195, y: 0.29143667}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.50469285, y: 0.5469162}
     oldSize: {x: 22.570002, y: 23.14}
     newSize: {x: 0.98, y: 0.72}
     adaptiveTilingThreshold: 0.5
@@ -744,7 +746,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.50469285, y: 0.5469162}
     oldSize: {x: 22.570002, y: 23.14}
     newSize: {x: 0.98, y: 0.72}
     adaptiveTilingThreshold: 0.5
@@ -1131,9 +1133,11 @@ MonoBehaviour:
   Player: {fileID: 673173583}
   InitialNode2: {fileID: 457176496}
   MoveSpeed: 1
+  CurrentPositionHolder: {x: 0, y: 0, z: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
+  prevCommand: {x: 0, y: 0, z: 0}
 --- !u!4 &736815031
 Transform:
   m_ObjectHideFlags: 0

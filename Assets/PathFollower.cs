@@ -12,10 +12,11 @@ public class PathFollower : MonoBehaviour {
 	public float MoveSpeed;
 	float Timer;
 	int CurrentNode = 0;
-	Vector3 CurrentPositionHolder;
+	public Vector3 CurrentPositionHolder;
 	bool moveInfinitely = false;
 	Vector3 infiniteDirection ;
 	PlayerMovement plMove;
+	static float[] scales = {0.05f, 0.03f, 0.025f, 0.04f};
 
 	//PlaneSc
 	private Rigidbody2D rb;
@@ -28,6 +29,8 @@ public class PathFollower : MonoBehaviour {
 	public bool touchedRunway= false;
     Vector3 runwayMidpoint;
 
+	public Vector3 prevCommand;
+
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +38,8 @@ public class PathFollower : MonoBehaviour {
 		PathNode = new ArrayList();
 		CurrentPositionHolder = Player.transform.position;
 		MoveSpeed =  speeds[Random.Range(0, 4)];
+		int sc = Random.Range(0,4);	
+		Player.gameObject.transform.localScale = new Vector3(scales[sc],scales[sc],0);
 		//PlaneSc
 		rb = GetComponent<Rigidbody2D>();
 		location = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height/2, Camera.main.nearClipPlane));
@@ -42,7 +47,6 @@ public class PathFollower : MonoBehaviour {
 	
 	void CheckNode(){
 		if(CurrentNode <= PathNode.Count-1){
-			Timer = 0;
 			CurrentPositionHolder = ((Node)PathNode[CurrentNode]).transform.position;
 		}else{
 			plMove.setmoveOrNot();
@@ -57,23 +61,20 @@ public class PathFollower : MonoBehaviour {
 			if(touchedRunway && this.GetComponent<PathFollower>().PathNode.Count==0){
 				Destroy(this.gameObject);
 				plMove.atc.descrPlaneCount();
+				ScoreScript.scoreValue+=1;
 			}
 
-			if(plMove.getmoveOrNot()){
-				if(Player.transform.position != CurrentPositionHolder){
+			if(PathNode.Count > 0){
+				if(Player.transform.position.x != prevCommand.x || Player.transform.position.y != prevCommand.y){
 					FaceMoveDirection(CurrentPositionHolder);
 					Player.transform.position = Vector3.MoveTowards(Player.transform.position,CurrentPositionHolder,Time.deltaTime * MoveSpeed);
-					//Debug.Log(Player.transform.name+"--new--"+Time.deltaTime * MoveSpeed);
-					if(CurrentNode - 1 >= 0){
-						((Node)PathNode[CurrentNode-1]).GetComponent<Node>().DestroyGameObject();
-						PathNode.RemoveAt(CurrentNode-1);
-						CurrentNode--;
-					}
 					infiniteDirection = (Player.transform.position - CurrentPositionHolder).normalized;
-				}else{
-					if(CurrentNode < PathNode.Count){
-						CurrentNode++;
-						CheckNode();
+				}else if(Player.transform.position.x == prevCommand.x && Player.transform.position.y == prevCommand.y){
+					((Node)PathNode[CurrentNode]).GetComponent<Node>().DestroyGameObject();
+					PathNode.RemoveAt(CurrentNode);
+					if(PathNode.Count >= 1){
+						CurrentPositionHolder = ((Node)PathNode[CurrentNode]).transform.position;
+						prevCommand = CurrentPositionHolder;
 					}
 				}
 			}//PlaneSc
@@ -91,7 +92,7 @@ public class PathFollower : MonoBehaviour {
 					location.x = -12f;
 				}
 				FaceMoveDirection(location);
-				Player.transform.position = Vector3.MoveTowards(Player.transform.position, location, Time.deltaTime * 1f);
+				Player.transform.position = Vector3.MoveTowards(Player.transform.position, location, Time.deltaTime * MoveSpeed/2);
 			}
 		}
 	}
@@ -101,6 +102,7 @@ public class PathFollower : MonoBehaviour {
     	if(moveInfinitely)
     		moveInfinitely = false;
     	PathNode.Add(newNode);
+		prevCommand =  ((Node)PathNode[0]).transform.position;
     }
 
 	public void FaceMoveDirection(Vector3 CurrentPositionHolder)
@@ -114,6 +116,7 @@ public class PathFollower : MonoBehaviour {
 	public void reInitializePath(Vector3 worldCoordinates, Node InitialNode){
 		destroyNode();
 		CurrentNode =0;
+		CurrentPositionHolder = worldCoordinates;
 		addNodeSInPathNode(Instantiate(InitialNode, new Vector3(worldCoordinates.x,worldCoordinates.y), InitialNode.transform.rotation));
 	}
 
@@ -141,9 +144,16 @@ public class PathFollower : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip"){
+
+        	if(ScoreScript.scoreValue > PlayerPrefs.GetInt("HighScore"))
+			{
+				PlayerPrefs.SetInt("HighScore", ScoreScript.scoreValue);
+			}
 			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			plMove.atc.descrPlaneCount();
+			//Game End
 			Destroy(col.gameObject);
+			Application.LoadLevel("GameOverScene");
 		}
     }
 

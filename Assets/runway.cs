@@ -28,8 +28,8 @@ namespace PlayerMovement1
             Vector3 contactPoint = col.contacts[0].point;
             Vector3 center = collide.bounds.center;
             bool right = contactPoint.x < center.x;
-
-            if (right)
+			bool top = contactPoint.y > center.y;
+            if (right && top)
             {
                 rb = col.gameObject.GetComponent<Rigidbody2D>();
                 Destroy(rb);
@@ -53,8 +53,9 @@ namespace PlayerMovement1
                 gameObj.GetComponent<PathFollower>().settouchRunway(true);
             }
             else{
+				Debug.Log("PLUYYYYYHHFFHFBH");
                 gameObj = col.gameObject;
-                Physics2D.IgnoreCollision(col.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
+                Physics2D.IgnoreCollision(col.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<BoxCollider2D>());
                 StartCoroutine(wait());
                 touchedRunway = true;
             }
@@ -66,7 +67,7 @@ namespace PlayerMovement1
         }
         IEnumerator wait(){
             yield return new WaitForSecondsRealtime(2);
-            Physics2D.IgnoreCollision(gameObj.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>(), false);
+            Physics2D.IgnoreCollision(gameObj.GetComponent<PolygonCollider2D>(), this.GetComponent<BoxCollider2D>(), false);
         }
         public bool gettouch()
         {

@@ -16,7 +16,7 @@ public class PathFollower : MonoBehaviour {
 	bool moveInfinitely = false;
 	Vector3 infiniteDirection ;
 	PlayerMovement plMove;
-	static float[] scales = {0.05f, 0.03f, 0.025f, 0.04f};
+	static float[] scales = {0.05f, 0.04f, 0.035f, 0.045f};
 
 	//PlaneSc
 	private Rigidbody2D rb;

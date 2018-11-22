@@ -360,6 +360,7 @@ MonoBehaviour:
   InitialNode: {fileID: 0}
   pF: {fileID: 0}
   atc: {fileID: 0}
+  waterPlane: 0
   moveOrNot: 0
 --- !u!20 &519420031
 Camera:
@@ -591,6 +592,7 @@ MonoBehaviour:
   InitialNode: {fileID: 457176496}
   pF: {fileID: 0}
   atc: {fileID: 0}
+  waterPlane: 0
   moveOrNot: 0
 --- !u!114 &673173587
 MonoBehaviour:
@@ -1316,7 +1318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad621314d6c8125418916a24a48c89ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fire: {fileID: 0}
   allPlaneCount: 0
+  allfireCount: 0
 --- !u!4 &938246940
 Transform:
   m_ObjectHideFlags: 0

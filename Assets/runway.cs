@@ -10,10 +10,11 @@ namespace PlayerMovement1
         bool touchedRunway = false;
         GameObject gameObj;
         Vector3 originalScale, destinationScale;
+        public int runwayColor;
         // Use this for initialization
         void Start()
         {
-
+               runwayColor = 0; 
         }
 
         // Update is called once per frame

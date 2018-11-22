@@ -6,6 +6,7 @@ TextureImporter:
     21300002: sheet_0
     21300004: PathDot
     21300006: background
+    21300008: fire_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -178,13 +179,33 @@ TextureImporter:
         width: 46
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: a4ff3a12bd1aad54c8a21fe0122d6168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 407
+        width: 121
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b114a3920950224cba890192ea6ffd7
       vertices: []
       indices: 
       edges: []

@@ -66,6 +66,7 @@ public class planeScript : MonoBehaviour {
 			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			Destroy(col.gameObject);
 		}
+		
     }
 
 	public void settouchRunway(bool toogle)

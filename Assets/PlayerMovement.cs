@@ -11,6 +11,8 @@ namespace PlayerMovement1{
         public Node InitialNode;
 		public PathFollower pF;
 		public ATCCenter atc;
+		public bool waterPlane;
+		public int colorPlane;
 		
 
 
@@ -34,8 +36,10 @@ namespace PlayerMovement1{
 			Path.transform.name = "Path"+a+transform.name;
 			pF = gameObject.GetComponent<PathFollower>();
 			atc = atcGob.GetComponent<ATCCenter>();
+			waterPlane = false;
+			colorPlane = 0;
             //pF = GetComponentInChildren<PathFollower>();
-			Debug.Log(transform.name + "" + pF.name + "" + atc.name);
+			//Debug.Log(transform.name + "" + pF.name + "" + atc.name);
 		}
 	
 		// Update is called once per frame
@@ -114,6 +118,10 @@ namespace PlayerMovement1{
 		
 		public void highLightStop(){
 			transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+		}
+
+		public bool isWaterPlane(){
+			return waterPlane;
 		}
 
 	}

@@ -218,6 +218,12 @@ MonoBehaviour:
   planes: {fileID: 701105035}
   spawnRate: 7
   direction: 1
+  ColorPlane: 0
+  orange: {fileID: 0}
+  red: {fileID: 0}
+  plane: {fileID: 0}
+  water: {fileID: 0}
+  SpriteRenderer: {fileID: 0}
   atc: {fileID: 1130889377}
 --- !u!4 &143947872
 Transform:
@@ -900,6 +906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pl: {fileID: 701105035}
   spawnernumber: 1
+  ColorPlane: 0
+  waterPlane: 0
   moveSingle: 1
   touchedRunway: 0
 --- !u!58 &701105040
@@ -968,6 +976,8 @@ MonoBehaviour:
   InitialNode2: {fileID: 0}
   MoveSpeed: 0
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
+  atcGob: {fileID: 1130889376}
+  atc: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -988,8 +998,6 @@ MonoBehaviour:
   InitialNode: {fileID: 1758630724}
   pF: {fileID: 0}
   atc: {fileID: 0}
-  waterPlane: 0
-  colorPlane: 0
   moveOrNot: 0
 --- !u!212 &701105045
 SpriteRenderer:
@@ -1477,6 +1485,7 @@ MonoBehaviour:
   fire: {fileID: 611468756}
   allPlaneCount: 0
   allfireCount: 0
+  allWaterPlaneCount: 0
   activeScene: 
 --- !u!4 &1130889378
 Transform:
@@ -1536,6 +1545,8 @@ MonoBehaviour:
   InitialNode2: {fileID: 1758630724}
   MoveSpeed: 1
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
+  atcGob: {fileID: 0}
+  atc: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1574,8 +1585,6 @@ MonoBehaviour:
   InitialNode: {fileID: 0}
   pF: {fileID: 0}
   atc: {fileID: 0}
-  waterPlane: 0
-  colorPlane: 0
   moveOrNot: 0
 --- !u!81 &1171940473
 AudioListener:

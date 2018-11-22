@@ -11,11 +11,13 @@ public class ATCCenter : MonoBehaviour {
 	public GameObject fire;
 	public int allPlaneCount;
 	public int allfireCount;
-	public String activeScene;
+    public int allWaterPlaneCount;
+    public String activeScene;
 	// Use this for initialization
 	void Start () {
 		allPlaneCount = 0;
-		Scene scene = SceneManager.GetActiveScene();
+        allWaterPlaneCount = 0;
+        Scene scene = SceneManager.GetActiveScene();
 		activeScene = scene.name;
         Debug.Log("Active scene is '" + scene.name + "'.");
 	}
@@ -58,5 +60,18 @@ public class ATCCenter : MonoBehaviour {
 	public String getActiveScene(){
 		return activeScene;
 	}
-}
+    public void incrWaterPlaneCount()
+    {
+            allWaterPlaneCount += 1;
+    }
+
+    public void descWaterPlaneCount()
+    {
+            allWaterPlaneCount -= 1;   
+    }
+    public bool getWaterPlaneCount()
+    {
+        return allWaterPlaneCount==0;
+    }
+    }
 }

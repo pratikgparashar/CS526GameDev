@@ -24,7 +24,7 @@ public class wildfire : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-    	if(!other.gameObject.GetComponent<PlayerMovement>().isWaterPlane()){
+            if(!other.gameObject.GetComponent<planeScript>().isWaterPlane()){
     		Destroy(other.gameObject);
 			Application.LoadLevel("GameOverScene");	
     	}

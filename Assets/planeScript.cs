@@ -8,6 +8,8 @@ public class planeScript : MonoBehaviour {
     private Rigidbody2D rb;
     public GameObject pl;
     public int spawnernumber;
+    public int ColorPlane;
+        public bool waterPlane;
     float randX = 0.0f;
     float randY = 0.0f;
     Vector3 directionF = new Vector3(0.02f,0.05f,0);
@@ -19,6 +21,7 @@ public class planeScript : MonoBehaviour {
         // Use this for initialization
     void Start()
     {
+        waterPlane = false;
         rb = GetComponent<Rigidbody2D>();
         randX = Random.Range(-0.04f, 0.0f);
         randY = Random.Range(-0.04f, 0.02f);
@@ -62,7 +65,7 @@ public class planeScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip"){
+            if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip" && col.gameObject.name!="runway1"){
 			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			Destroy(col.gameObject);
 		}
@@ -90,5 +93,9 @@ public class planeScript : MonoBehaviour {
 		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 		pl.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 	}
-}
+    public bool isWaterPlane()
+    {
+        return waterPlane;
+    }
+    }
 }

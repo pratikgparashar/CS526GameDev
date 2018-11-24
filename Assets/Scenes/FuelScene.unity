@@ -145,7 +145,7 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 62889430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -262,7 +262,7 @@ PolygonCollider2D:
       - {x: 10.21414, y: -3.7625096}
       - {x: 10.89207, y: -4.124072}
       - {x: 10.89207, y: -4.3500485}
-      - {x: 10.914668, y: -4.3726463}
+      - {x: 12.775201, y: 2.1980774}
       - {x: 11.016357, y: -4.3726463}
       - {x: 11.038955, y: -4.3613477}
       - {x: 11.050254, y: -4.2370605}
@@ -603,7 +603,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 62889430}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -650,6 +650,7 @@ MonoBehaviour:
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
   atcGob: {fileID: 1113305589}
   atc: {fileID: 0}
+  fuel: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -869,6 +870,7 @@ MonoBehaviour:
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
   atcGob: {fileID: 0}
   atc: {fileID: 0}
+  fuel: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1568,7 +1570,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1382185747
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!212 &1101032055

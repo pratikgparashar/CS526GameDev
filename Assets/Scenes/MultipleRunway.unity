@@ -532,7 +532,6 @@ MonoBehaviour:
   red: {fileID: 21300000, guid: 90882a40b72e23f42b604ec19214b01b, type: 3}
   plane: {fileID: 21300000, guid: 1ad4908e5b9035049b154640fc12d11d, type: 3}
   water: {fileID: 0}
-  SpriteRenderer: {fileID: 0}
   atc: {fileID: 1802476715}
 --- !u!4 &777780485
 Transform:
@@ -1018,7 +1017,7 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1754711035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1476,7 +1475,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1754711035}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1523,6 +1522,7 @@ MonoBehaviour:
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
   atcGob: {fileID: 1802476714}
   atc: {fileID: 0}
+  fuel: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1697,6 +1697,7 @@ MonoBehaviour:
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
   atcGob: {fileID: 0}
   atc: {fileID: 0}
+  fuel: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1788,7 +1789,7 @@ GameObject:
   - component: {fileID: 2135271702}
   - component: {fileID: 2135271701}
   m_Layer: 0
-  m_Name: runway (1)
+  m_Name: runway1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

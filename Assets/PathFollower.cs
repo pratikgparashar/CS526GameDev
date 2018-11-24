@@ -18,8 +18,12 @@ public class PathFollower : MonoBehaviour {
 	PlayerMovement plMove;
 	static float[] scales = {0.05f, 0.04f, 0.035f, 0.045f,0.08f};
 
-        public GameObject atcGob;
-        public ATCCenter atc;
+    public GameObject atcGob;
+    public ATCCenter atc;
+
+    //for fuel
+    public FuelScript fuel;
+
 
         //PlaneSc
         private Rigidbody2D rb;
@@ -47,6 +51,11 @@ public class PathFollower : MonoBehaviour {
         if (Player.GetComponent<planeScript>().isWaterPlane())
             sc = 4;
 		Player.gameObject.transform.localScale = new Vector3(scales[sc],scales[sc],0);
+
+		//for Fuel
+		fuel = gameObject.GetComponent<FuelScript>();
+
+
 		//PlaneSc
 		rb = GetComponent<Rigidbody2D>();
 		location = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height/2, Camera.main.nearClipPlane));
@@ -63,6 +72,32 @@ public class PathFollower : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		
+		///For Fuel tending to 0.
+		if(atc.getActiveScene()=="FuelScene")
+		{
+			if(transform.name != "OriginalPlayerShip")
+			{
+
+				if(fuel.getCurrentFuel()==0f)
+				{
+					if(ScoreScript.scoreValue > PlayerPrefs.GetInt("HighScore"))
+					{
+						PlayerPrefs.SetInt("HighScore", ScoreScript.scoreValue);
+					}
+					//col.gameObject.GetComponent<PathFollower>().destroyNode();
+					//plMove.atc.descrPlaneCount();
+					//Game End
+					//Destroy(col.gameObject);
+					Application.LoadLevel("GameOverScene");
+				}
+			}
+		}
+
+
+
+
+
 		if(transform.name != "OriginalPlayerShip"){ 
 			
 			if(touchedRunway && this.GetComponent<PathFollower>().PathNode.Count==0){
@@ -158,6 +193,7 @@ public class PathFollower : MonoBehaviour {
 			{
 				PlayerPrefs.SetInt("HighScore", ScoreScript.scoreValue);
 			}
+			Debug.Log("OnCollisionError======>>>>>>>"+ col.gameObject.name);
 			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			plMove.atc.descrPlaneCount();
 			//Game End

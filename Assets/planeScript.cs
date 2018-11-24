@@ -63,14 +63,14 @@ public class planeScript : MonoBehaviour {
             }
         }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-            if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip" && col.gameObject.name!="runway1"){
-			col.gameObject.GetComponent<PathFollower>().destroyNode();
-			Destroy(col.gameObject);
-		}
+  //   void OnCollisionEnter2D(Collision2D col)
+  //   {
+  //           if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip" && col.gameObject.name!="runway1"){
+		// 	col.gameObject.GetComponent<PathFollower>().destroyNode();
+		// 	Destroy(col.gameObject);
+		// }
 		
-    }
+  //   }
 
 	public void settouchRunway(bool toogle)
     {

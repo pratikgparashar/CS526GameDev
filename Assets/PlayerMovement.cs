@@ -12,6 +12,7 @@ namespace PlayerMovement1{
 		public PathFollower pF;
 		public ATCCenter atc;
 		
+		
 
 
 		//Vector3 worldCoordinates;
@@ -33,6 +34,7 @@ namespace PlayerMovement1{
 			//transform.scale.y = scales[sc];
 			Path.transform.name = "Path"+a+transform.name;
 			pF = gameObject.GetComponent<PathFollower>();
+			
 			atc = atcGob.GetComponent<ATCCenter>();
             //pF = GetComponentInChildren<PathFollower>();
 			Debug.Log(transform.name + "" + pF.name + "" + atc.name);
@@ -40,6 +42,10 @@ namespace PlayerMovement1{
 	
 		// Update is called once per frame
 		void Update () {
+
+			
+
+
 			if(transform.name != "OriginalPlayerShip"){
 				foreach(Touch touch in Input.touches)
 				{

@@ -18,6 +18,8 @@ public class PathFollower : MonoBehaviour {
 	PlayerMovement plMove;
 	static float[] scales = {0.05f, 0.04f, 0.035f, 0.045f};
 
+	public fuelScript fuel;
+
 	//PlaneSc
 	private Rigidbody2D rb;
     public int spawnernumber;
@@ -40,9 +42,15 @@ public class PathFollower : MonoBehaviour {
 		MoveSpeed =  speeds[Random.Range(0, 4)];
 		int sc = Random.Range(0,4);	
 		Player.gameObject.transform.localScale = new Vector3(scales[sc],scales[sc],0);
+
+
+		fuel = gameObject.GetComponent<fuelScript>();
+
 		//PlaneSc
 		rb = GetComponent<Rigidbody2D>();
 		location = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height/2, Camera.main.nearClipPlane));
+
+
 	}
 	
 	void CheckNode(){
@@ -55,7 +63,31 @@ public class PathFollower : MonoBehaviour {
 		
 	}
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
+
+		if(transform.name != "OriginalPlayerShip")
+		{
+
+			if(fuel.getCurrentFuel()==0f)
+			{
+				if(ScoreScript.scoreValue > PlayerPrefs.GetInt("HighScore"))
+				{
+					PlayerPrefs.SetInt("HighScore", ScoreScript.scoreValue);
+				}
+				//col.gameObject.GetComponent<PathFollower>().destroyNode();
+				//plMove.atc.descrPlaneCount();
+				//Game End
+				//Destroy(col.gameObject);
+				Application.LoadLevel("GameOverScene");
+			}
+		}
+	
+
+
+
+
+
 		if(transform.name != "OriginalPlayerShip"){ 
 			
 			if(touchedRunway && this.GetComponent<PathFollower>().PathNode.Count==0){

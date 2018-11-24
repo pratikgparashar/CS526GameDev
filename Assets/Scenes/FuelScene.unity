@@ -1011,7 +1011,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.26666668, g: 0.48235294, b: 0.4117647, a: 0}
+  m_BackGroundColor: {r: 0.23073158, g: 0.5674923, b: 0.5754717, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1159,7 +1159,6 @@ MonoBehaviour:
   red: {fileID: 0}
   plane: {fileID: 0}
   water: {fileID: 0}
-  SpriteRenderer: {fileID: 0}
   atc: {fileID: 1113305590}
 --- !u!4 &537136437
 Transform:
@@ -1926,13 +1925,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1983298461}
-  m_LocalRotation: {x: -0.003005866, y: -0.0018870353, z: 0.16277675, w: 0.9866566}
-  m_LocalPosition: {x: 0.33, y: -2.23, z: 0.01}
-  m_LocalScale: {x: 1.0138414, y: 0.91245, z: 0.5}
+  m_LocalRotation: {x: -0.0026748504, y: -0.0023326806, z: 0.31464127, w: 0.9492041}
+  m_LocalPosition: {x: -1.08, y: -2.14, z: 0.01}
+  m_LocalScale: {x: 0.8565743, y: 1.2666632, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.305, y: -0.26900002, z: 18.737001}
+  m_LocalEulerAnglesHint: {x: -0.20700002, y: -0.35000002, z: 36.679}
 --- !u!1 &2030915291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,7 +2070,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba970c623b6124499b64bc56ae9cd912, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e08cb24fecb7f4e63852b0ba79c3ce11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2089,8 +2088,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2127793619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.46, z: 0}
-  m_LocalScale: {x: 1.2617188, y: 1.1681249, z: 1}
+  m_LocalPosition: {x: -0.21, y: -1.173, z: 0}
+  m_LocalScale: {x: 1.355086, y: 1.2487255, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7

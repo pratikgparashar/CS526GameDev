@@ -8,7 +8,7 @@ public class RestartGameScript : MonoBehaviour {
 
 public void restartGameScript()
 {
-	SceneManager.LoadScene("SampleScene");
+	SceneManager.LoadScene("StartScreen");
 	//Debug.Log("LOADED THE SCENE =>>>>>>>> SampleScene");
 }
 	

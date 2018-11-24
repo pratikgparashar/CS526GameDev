@@ -71,6 +71,12 @@ namespace PlayerMovement1
                 gameObj = col.gameObject;
                 gameObj.GetComponent<PathFollower>().settouchRunway(true);
             }
+            else{
+                gameObj = col.gameObject;
+                Physics2D.IgnoreCollision(col.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<BoxCollider2D>());
+                StartCoroutine(wait());
+                touchedRunway = true;
+            }
 
         }
         void waitTime()

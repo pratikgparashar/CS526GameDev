@@ -435,7 +435,7 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701105035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -893,7 +893,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701105035}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -940,6 +940,7 @@ MonoBehaviour:
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
   atcGob: {fileID: 1130889376}
   atc: {fileID: 0}
+  fuel: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1466,6 +1467,7 @@ MonoBehaviour:
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
   atcGob: {fileID: 0}
   atc: {fileID: 0}
+  fuel: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0

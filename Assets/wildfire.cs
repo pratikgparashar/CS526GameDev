@@ -4,7 +4,7 @@ using UnityEngine;
 namespace PlayerMovement1
 {
 public class wildfire : MonoBehaviour {
-	float[,] positions = new float[,] {{6.27f, 1.88f},{6.27f, -3.09f},{-3.34f, -4.52f},{-4.35f, 0.28f}};
+	float[,] positions = new float[,] {{2.13f, -2.06f},{-2.42f, -2.06f},{1.01f, -4.09f},{-0.42f, 1.83f}};
 	float fireSize = 1.0f;
 	public GameObject atcGob;
 	ATCCenter atc;
@@ -24,7 +24,7 @@ public class wildfire : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-    	if(!other.gameObject.GetComponent<PlayerMovement>().isWaterPlane()){
+            if(!other.gameObject.GetComponent<planeScript>().isWaterPlane()){
     		Destroy(other.gameObject);
 			Application.LoadLevel("GameOverScene");	
     	}

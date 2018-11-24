@@ -14,7 +14,7 @@ namespace PlayerMovement1
         // Use this for initialization
         void Start()
         {
-               runwayColor = 0; 
+               
         }
 
         // Update is called once per frame
@@ -25,12 +25,30 @@ namespace PlayerMovement1
 
         void OnCollisionEnter2D(Collision2D col)
         {
+            if(isAllowedOrNot(col)){
+                landOrNot(col);
+            }
+            else{
+                Debug.Log("PLUYYYYYHHFFHFBH");
+                gameObj = col.gameObject;
+                Physics2D.IgnoreCollision(col.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<BoxCollider2D>());
+                StartCoroutine(wait());
+                touchedRunway = true;
+            }
+
+        }
+        public bool isAllowedOrNot(Collision2D col){
+
+            return runwayColor == col.gameObject.GetComponent<planeScript>().ColorPlane;
+        }
+        void landOrNot(Collision2D col){
+
             Collider2D collide = col.collider;
             Vector3 contactPoint = col.contacts[0].point;
             Vector3 center = collide.bounds.center;
             bool right = contactPoint.x < center.x;
-			bool top = contactPoint.y > center.y;
-            if (right)
+            bool top = contactPoint.y < center.y;
+            if (right || top)
             {
                 rb = col.gameObject.GetComponent<Rigidbody2D>();
                 Destroy(rb);
@@ -54,7 +72,6 @@ namespace PlayerMovement1
                 gameObj.GetComponent<PathFollower>().settouchRunway(true);
             }
             else{
-				Debug.Log("PLUYYYYYHHFFHFBH");
                 gameObj = col.gameObject;
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<BoxCollider2D>());
                 StartCoroutine(wait());

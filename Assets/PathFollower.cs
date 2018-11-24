@@ -16,10 +16,13 @@ public class PathFollower : MonoBehaviour {
 	bool moveInfinitely = false;
 	Vector3 infiniteDirection ;
 	PlayerMovement plMove;
-	static float[] scales = {0.05f, 0.04f, 0.035f, 0.045f};
+	static float[] scales = {0.05f, 0.04f, 0.035f, 0.045f,0.08f};
 
-	//PlaneSc
-	private Rigidbody2D rb;
+        public GameObject atcGob;
+        public ATCCenter atc;
+
+        //PlaneSc
+        private Rigidbody2D rb;
     public int spawnernumber;
     float randX = 0.0f;
     float randY = 0.0f;
@@ -34,11 +37,15 @@ public class PathFollower : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		plMove = Player.GetComponent<PlayerMovement>();
-		PathNode = new ArrayList();
+            plMove = Player.GetComponent<PlayerMovement>(); 
+            atc = atcGob.GetComponent<ATCCenter>();
+
+            PathNode = new ArrayList();
 		CurrentPositionHolder = Player.transform.position;
-		MoveSpeed =  speeds[Random.Range(0, 4)];
-		int sc = Random.Range(0,4);	
+            MoveSpeed = speeds[Random.Range(0, 4)];
+		int sc = Random.Range(0,4);
+        if (Player.GetComponent<planeScript>().isWaterPlane())
+            sc = 4;
 		Player.gameObject.transform.localScale = new Vector3(scales[sc],scales[sc],0);
 		//PlaneSc
 		rb = GetComponent<Rigidbody2D>();
@@ -59,7 +66,9 @@ public class PathFollower : MonoBehaviour {
 		if(transform.name != "OriginalPlayerShip"){ 
 			
 			if(touchedRunway && this.GetComponent<PathFollower>().PathNode.Count==0){
-				Destroy(this.gameObject);
+                    if (Player.GetComponent<planeScript>().isWaterPlane())
+                        atc.descWaterPlaneCount();
+                Destroy(this.gameObject);
 				plMove.atc.descrPlaneCount();
 				ScoreScript.scoreValue+=1;
 			}
@@ -143,7 +152,7 @@ public class PathFollower : MonoBehaviour {
 	//PlaneSc
 	void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip"){
+            if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip" && col.gameObject.name!="runway1"){
 
         	if(ScoreScript.scoreValue > PlayerPrefs.GetInt("HighScore"))
 			{

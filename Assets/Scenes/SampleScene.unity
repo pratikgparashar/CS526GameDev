@@ -218,6 +218,12 @@ MonoBehaviour:
   planes: {fileID: 673173583}
   spawnRate: 7
   direction: 1
+  ColorPlane: 0
+  orange: {fileID: 0}
+  red: {fileID: 0}
+  plane: {fileID: 0}
+  water: {fileID: 0}
+  SpriteRenderer: {fileID: 0}
   atc: {fileID: 938246939}
 --- !u!4 &275268105
 Transform:
@@ -360,7 +366,6 @@ MonoBehaviour:
   InitialNode: {fileID: 0}
   pF: {fileID: 0}
   atc: {fileID: 0}
-  waterPlane: 0
   moveOrNot: 0
 --- !u!20 &519420031
 Camera:
@@ -592,7 +597,6 @@ MonoBehaviour:
   InitialNode: {fileID: 457176496}
   pF: {fileID: 0}
   atc: {fileID: 0}
-  waterPlane: 0
   moveOrNot: 0
 --- !u!114 &673173587
 MonoBehaviour:
@@ -609,6 +613,8 @@ MonoBehaviour:
   InitialNode2: {fileID: 0}
   MoveSpeed: 0
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
+  atcGob: {fileID: 938246938}
+  atc: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -637,6 +643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pl: {fileID: 673173583}
   spawnernumber: 1
+  ColorPlane: 0
+  waterPlane: 0
   moveSingle: 1
   touchedRunway: 0
 --- !u!61 &673173590
@@ -1136,6 +1144,8 @@ MonoBehaviour:
   InitialNode2: {fileID: 457176496}
   MoveSpeed: 1
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
+  atcGob: {fileID: 0}
+  atc: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1321,6 +1331,8 @@ MonoBehaviour:
   fire: {fileID: 0}
   allPlaneCount: 0
   allfireCount: 0
+  allWaterPlaneCount: 0
+  activeScene: 
 --- !u!4 &938246940
 Transform:
   m_ObjectHideFlags: 0
@@ -1537,6 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a995e3ae87c342f49fd3904a2a19f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runwayColor: 0
 --- !u!61 &1054705960
 BoxCollider2D:
   m_ObjectHideFlags: 0

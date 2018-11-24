@@ -29,7 +29,7 @@ namespace PlayerMovement1
         {
             orange = Resources.Load<Sprite>("orange");
             red = Resources.Load<Sprite>("clipart51532348");
-            water = Resources.Load<Sprite>("circled");
+            water = Resources.Load<Sprite>("water");
 
             if (SpriteRenderer.sprite == null)
                 SpriteRenderer.sprite = orange;

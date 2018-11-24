@@ -16,7 +16,7 @@ public class PathFollower : MonoBehaviour {
 	bool moveInfinitely = false;
 	Vector3 infiniteDirection ;
 	PlayerMovement plMove;
-	static float[] scales = {0.05f, 0.04f, 0.035f, 0.045f};
+	static float[] scales = {0.05f, 0.04f, 0.035f, 0.045f,0.08f};
 
         public GameObject atcGob;
         public ATCCenter atc;
@@ -42,8 +42,10 @@ public class PathFollower : MonoBehaviour {
 
             PathNode = new ArrayList();
 		CurrentPositionHolder = Player.transform.position;
-		MoveSpeed =  speeds[Random.Range(0, 4)];
-		int sc = Random.Range(0,4);	
+            MoveSpeed = speeds[Random.Range(0, 4)];
+		int sc = Random.Range(0,4);
+        if (Player.GetComponent<planeScript>().isWaterPlane())
+            sc = 4;
 		Player.gameObject.transform.localScale = new Vector3(scales[sc],scales[sc],0);
 		//PlaneSc
 		rb = GetComponent<Rigidbody2D>();

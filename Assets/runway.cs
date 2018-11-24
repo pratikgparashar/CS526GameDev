@@ -47,8 +47,8 @@ namespace PlayerMovement1
             Vector3 contactPoint = col.contacts[0].point;
             Vector3 center = collide.bounds.center;
             bool right = contactPoint.x < center.x;
-            bool top = contactPoint.y > center.y;
-            if (right)
+            bool top = contactPoint.y < center.y;
+            if (right || top)
             {
                 rb = col.gameObject.GetComponent<Rigidbody2D>();
                 Destroy(rb);

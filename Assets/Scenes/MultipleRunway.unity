@@ -395,8 +395,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606742795}
   m_LocalRotation: {x: -0.003005866, y: -0.0018870353, z: 0.16277675, w: 0.9866566}
-  m_LocalPosition: {x: 0.33, y: -2.23, z: 0.01}
-  m_LocalScale: {x: 1.0138414, y: 0.91245, z: 0.5}
+  m_LocalPosition: {x: 0.87, y: -2.04, z: 0.01}
+  m_LocalScale: {x: 0.87775344, y: 0.91245, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -435,8 +435,6 @@ MonoBehaviour:
   InitialNode: {fileID: 0}
   pF: {fileID: 0}
   atc: {fileID: 0}
-  waterPlane: 0
-  colorPlane: 0
   moveOrNot: 0
 --- !u!81 &768709978
 AudioListener:
@@ -533,6 +531,7 @@ MonoBehaviour:
   orange: {fileID: 21300000, guid: 971f7f266ace840f4b5f310a3bc9153d, type: 3}
   red: {fileID: 21300000, guid: 90882a40b72e23f42b604ec19214b01b, type: 3}
   plane: {fileID: 21300000, guid: 1ad4908e5b9035049b154640fc12d11d, type: 3}
+  water: {fileID: 0}
   SpriteRenderer: {fileID: 0}
   atc: {fileID: 1802476715}
 --- !u!4 &777780485
@@ -1453,6 +1452,7 @@ MonoBehaviour:
   pl: {fileID: 1754711035}
   spawnernumber: 1
   ColorPlane: 0
+  waterPlane: 0
   moveSingle: 1
   touchedRunway: 0
 --- !u!58 &1754711040
@@ -1521,6 +1521,8 @@ MonoBehaviour:
   InitialNode2: {fileID: 0}
   MoveSpeed: 0
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
+  atcGob: {fileID: 1802476714}
+  atc: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1541,8 +1543,6 @@ MonoBehaviour:
   InitialNode: {fileID: 480426509}
   pF: {fileID: 0}
   atc: {fileID: 0}
-  waterPlane: 0
-  colorPlane: 0
   moveOrNot: 0
 --- !u!212 &1754711045
 SpriteRenderer:
@@ -1635,6 +1635,7 @@ MonoBehaviour:
   fire: {fileID: 0}
   allPlaneCount: 0
   allfireCount: 0
+  allWaterPlaneCount: 0
   activeScene: 
 --- !u!4 &1802476716
 Transform:
@@ -1694,6 +1695,8 @@ MonoBehaviour:
   InitialNode2: {fileID: 480426509}
   MoveSpeed: 1
   CurrentPositionHolder: {x: 0, y: 0, z: 0}
+  atcGob: {fileID: 0}
+  atc: {fileID: 0}
   spawnernumber: 0
   moveSingle: 1
   touchedRunway: 0
@@ -1824,7 +1827,7 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
   m_Size: {x: 0.6498189, y: 0.6211424}
   m_EdgeRadius: 0
@@ -1880,10 +1883,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2135271700}
-  m_LocalRotation: {x: -0.002637472, y: -0.0023748418, z: -0.008944569, w: 0.99995375}
-  m_LocalPosition: {x: 0.17, y: 0.07, z: -0}
-  m_LocalScale: {x: 1.0138414, y: 0.91245, z: 0.5}
+  m_LocalRotation: {x: -0.0010846868, y: -0.0033792888, z: 0.9317995, w: 0.36295623}
+  m_LocalPosition: {x: -2.14, y: -3.04, z: -0.03}
+  m_LocalScale: {x: 0.6894998, y: 0.91245, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: -0.305, y: -0.26900002, z: -1.024}
+  m_LocalEulerAnglesHint: {x: 0.316, y: -0.256, z: 137.43501}

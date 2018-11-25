@@ -28,7 +28,7 @@ namespace PlayerMovement1
         void Start()
         {
             orange = Resources.Load<Sprite>("orange");
-            red = Resources.Load<Sprite>("clipart51532348");
+            red = Resources.Load<Sprite>("red");
             water = Resources.Load<Sprite>("water");
             // SpriteRenderer = GetComponent<SpriteRenderer>();
             // if (SpriteRenderer.sprite == null)

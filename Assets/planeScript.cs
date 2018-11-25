@@ -9,7 +9,8 @@ public class planeScript : MonoBehaviour {
     public GameObject pl;
     public int spawnernumber;
     public int ColorPlane;
-        public bool waterPlane;
+    public bool waterPlane;
+    public bool visible;
     float randX = 0.0f;
     float randY = 0.0f;
     Vector3 directionF = new Vector3(0.02f,0.05f,0);
@@ -22,6 +23,7 @@ public class planeScript : MonoBehaviour {
     void Start()
     {
         waterPlane = false;
+        visible = false;
         rb = GetComponent<Rigidbody2D>();
         randX = Random.Range(-0.04f, 0.0f);
         randY = Random.Range(-0.04f, 0.02f);
@@ -97,5 +99,19 @@ public class planeScript : MonoBehaviour {
     {
         return waterPlane;
     }
+
+    void OnBecameVisible() {
+    	Debug.Log("Visible Plane" + pl.gameObject.name);
+ 		visible = true;		
+	}
+
+	void OnBecameInvisible() {
+		Debug.Log("INVisible Plane" + pl.gameObject.name);
+ 		visible = false;		
+	}
+
+	public bool isPlaneVisible(){
+		return visible;
+	}
     }
 }

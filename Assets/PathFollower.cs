@@ -41,10 +41,10 @@ public class PathFollower : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-            plMove = Player.GetComponent<PlayerMovement>(); 
-            atc = atcGob.GetComponent<ATCCenter>();
+        plMove = Player.GetComponent<PlayerMovement>(); 
+        atc = atcGob.GetComponent<ATCCenter>();
 
-            PathNode = new ArrayList();
+        PathNode = new ArrayList();
 		CurrentPositionHolder = Player.transform.position;
             MoveSpeed = speeds[Random.Range(0, 4)];
 		int sc = Random.Range(0,4);
@@ -187,13 +187,20 @@ public class PathFollower : MonoBehaviour {
 	//PlaneSc
 	void OnCollisionEnter2D(Collision2D col)
     {
-            if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip" && col.gameObject.name!="runway1"){
+    	if (Player.GetComponent<planeScript>().isPlaneVisible()){
+	        if (col.gameObject.name != "runway" && col.gameObject.name != "OriginalPlayerShip" && col.gameObject.name!="runway1"){
 
-        	if(ScoreScript.scoreValue > PlayerPrefs.GetInt("HighScore"))
-			{
-				PlayerPrefs.SetInt("HighScore", ScoreScript.scoreValue);
+	        	if(ScoreScript.scoreValue > PlayerPrefs.GetInt("HighScore"))
+				{
+					PlayerPrefs.SetInt("HighScore", ScoreScript.scoreValue);
+				}
+				col.gameObject.GetComponent<PathFollower>().destroyNode();
+				plMove.atc.descrPlaneCount();
+				//Game End
+				Destroy(col.gameObject);
+				Application.LoadLevel("GameOverScene");
 			}
-			Debug.Log("OnCollisionError======>>>>>>>"+ col.gameObject.name);
+
 			col.gameObject.GetComponent<PathFollower>().destroyNode();
 			plMove.atc.descrPlaneCount();
 			//Game End

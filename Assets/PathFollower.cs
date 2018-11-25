@@ -200,12 +200,6 @@ public class PathFollower : MonoBehaviour {
 				Destroy(col.gameObject);
 				Application.LoadLevel("GameOverScene");
 			}
-
-			col.gameObject.GetComponent<PathFollower>().destroyNode();
-			plMove.atc.descrPlaneCount();
-			//Game End
-			Destroy(col.gameObject);
-			Application.LoadLevel("GameOverScene");
 		}
     }
 

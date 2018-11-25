@@ -101,12 +101,10 @@ public class planeScript : MonoBehaviour {
     }
 
     void OnBecameVisible() {
-    	Debug.Log("Visible Plane" + pl.gameObject.name);
  		visible = true;		
 	}
 
 	void OnBecameInvisible() {
-		Debug.Log("INVisible Plane" + pl.gameObject.name);
  		visible = false;		
 	}
 
